@@ -1,6 +1,7 @@
 import pandas as pd
 
 from typing import Optional
+from typing import Dict
 from pydantic import BaseModel
 from fastapi import FastAPI,Body,Query
 
@@ -13,17 +14,73 @@ disney_df = pd.read_csv('df_limpios\DF_Disney.csv')
 hulu_df = pd.read_csv('df_limpios\DF_Hulu.csv')
 netflix_df = pd.read_csv('df_limpios\DF_Netflix.csv')
 
-def contar_datos(dataframe):
+score_movies_df = pd.read_csv('ratings\GroupBy_Year_MovieId_MeanforRating.csv')
+
+
+def contar_peliculas(dataframe):
+   #este def contara solo las "movie" de cada plataforma, y las devolvera
    if dataframe == "1" or dataframe == "amazon":
-      return amazon_df.shape[0]
+      cant_peliculas =amazon_df[amazon_df["type"] == "movie"]
+      return cant_peliculas.shape[0]
    elif dataframe == "2" or dataframe == "netflix":
-      return netflix_df.shape[0]
+      cant_peliculas =netflix_df[netflix_df["type"] == "movie"]
+      return cant_peliculas.shape[0]
    elif dataframe == "3" or dataframe == "disney":
-      return disney_df.shape[0]
+      cant_peliculas =disney_df[disney_df["type"] == "movie"]
+      return cant_peliculas.shape[0]
    elif dataframe == "4" or dataframe == "hulu":
-      return hulu_df.shape[0]
+      cant_peliculas =hulu_df[hulu_df["type"] == "movie"]
+      return cant_peliculas.shape[0]
    else:
       return "error:plataforma incorrecta"
+
+def saberid(dataframe, anio):
+    # este def solo el id de una pelicula especifica
+   if dataframe == "1" or dataframe == "amazon":
+      estas_peliculas = amazon_df.loc[(amazon_df['type'] == "movie") & (amazon_df['release_year'] == int(anio))]
+      id_max = estas_peliculas['duration_int'].idxmax()
+      show_title = estas_peliculas.loc[id_max,'title']
+      show_duration = estas_peliculas.loc[id_max,'duration_int']
+      return show_title,show_duration
+   elif dataframe == "2" or dataframe == "netflix":
+      estas_peliculas = netflix_df.loc[(netflix_df['type'] == "movie") & (netflix_df['release_year'] == int(anio))]
+      id_max = estas_peliculas['duration_int'].idxmax()
+      show_title = estas_peliculas.loc[id_max,'title']
+      show_duration = estas_peliculas.loc[id_max,'duration_int']
+      return show_title,show_duration
+   elif dataframe == "3" or dataframe == "disney":
+      estas_peliculas = disney_df.loc[(disney_df['type'] == "movie") & (disney_df['release_year'] == int(anio))]
+      id_max = estas_peliculas['duration_int'].idxmax()
+      show_title = estas_peliculas.loc[id_max,'title']
+      show_duration = estas_peliculas.loc[id_max,'duration_int']
+      return show_title,show_duration
+   elif dataframe == "4" or dataframe == "hulu":
+      estas_peliculas = hulu_df.loc[(hulu_df['type'] == "movie") & (hulu_df['release_year'] == int(anio))]
+      id_max = estas_peliculas['duration_int'].idxmax()
+      show_title = estas_peliculas.loc[id_max,'title']
+      show_duration = estas_peliculas.loc[id_max,'duration_int']
+      return show_title,show_duration
+   else: 
+      return "error: dato no valido"
+
+def score_count(dataframe, scored, year):
+#muestra la cantidad de peliculas con un score especifico
+   compania = None
+
+   if dataframe == "1" or dataframe == "amazon":
+      compania = "amazon"
+   elif dataframe == "2" or dataframe == "netflix":
+      compania = "netflix"
+   elif dataframe == "3" or dataframe == "disney":
+      compania = "disney"
+   elif dataframe == "4" or dataframe == "hulu":
+      compania = "hulu"
+   else:
+      return "error"
+
+   count_peliculas = score_movies_df.loc[(score_movies_df['compania'] == compania) & (score_movies_df['year'] == int(year)) & (score_movies_df['rating'] >= scored)] 
+   cantidad = count_peliculas.shape[0]
+   return cantidad
 
 
 #appdef
@@ -34,44 +91,23 @@ async def home():
 #Cuantas Peliculas hay en esta plataforma
 @app.get("/get_count_platform/{plataforma}")
 async def plataforma(plataforma:str):
+   cantidad=contar_peliculas(str(plataforma))
+   return cantidad
 
-   cantidad=contar_datos(plataforma)
+#Pelicula mas larga
+@app.get("/get_max_duration/{year}/{plataforma}")
+async def get_max_duration(year: int, plataforma: str):
+   titleMovie,durationMovie = saberid(plataforma, year)
+   return (f'Movie{titleMovie} || Duration:{durationMovie}')
 
-   return {"la plataforma":{plataforma},
-            "tiene un total de peliculas": cantidad}
-
-
-# @app.get("/get_max_duration")
-# def boton1():
-#     return {"message": "Has presionado el botón 1"}
-
-# @app.get("/get_score_count")
-# def boton2():
-#     return {"message": "Has presionado el botón 2"}
-
-
-#Cuantas Peliculas hay en esta plataforma
-
-# @app.get("/get_count_platform/{plataforma}")
-
-# async def plataforma(plataforma:str):
-#    cantidad_peliculas=sin_jupiter.variable3
-#    return {"plataforma":cantidad_peliculas}
-
-# @app.get("/prod_per_county")
-# def boton2():
-#     return {"message": "Has presionado el botón 2"}
-
-# @app.get("/get_contents")
-# def boton2():
-#     return {"contenido"}
+@app.get("/get_score")
+async def get_score_count():
+   cantidad=score_count("1", 4, "2015")
+   return cantidad
 
 
-#get_max_duration(year, platform, duration_type)
-#get_score_count(platform, scored, year)
-#get_count_platform(platform)
-#prod_per_county(tipo,pais,anio)
-#get_contents(rating)
-
-
-
+#cantidad de peliculas con un score superior
+@app.get("/get_score_count/{platform}/{scored}/{year}")
+async def get_score_count(platform:str, scored: int, year: str):
+   cantidad=score_count(str(platform), int(scored),year)
+   return cantidad
