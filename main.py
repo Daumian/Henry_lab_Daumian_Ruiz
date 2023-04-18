@@ -134,8 +134,8 @@ async def home():
 
 @app.get("/get_count_platform/{plataforma}")
 async def get_count_platform(plataforma: str):
-   cantidad1=contar_movie()
-   return str(cantidad1)
+   cantidad1=contar_movie(plataforma)
+   return cantidad1
 
 
 #Pelicula mas larga
