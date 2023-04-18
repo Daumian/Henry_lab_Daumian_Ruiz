@@ -1,3 +1,6 @@
+
+
+
 # Henry_lab_Daumian_Ruiz
 
 ## *info*
@@ -8,35 +11,36 @@ https://deepnote.com/workspace/daumian-ruiz-ceed-0677a995-df7e-45a8-9540-809a031
 
 # *Limpieza*
 
-Generar campo id: Cada id se compone de la primera letra del nombre de la plataforma,
-ejemplo títulos el titulo "s123" de "Amazon" pasaria a llamarse "as123"
+Durante la limpieza de los datos, se llevaron a cabo los siguientes procesos:
 
-Los valores nulos del campo rating deberán reemplazarse por el string “G” 
+-Generación del campo ID: cada ID se compone de la primera letra del nombre de la plataforma. Por ejemplo, el título "s123" de "Amazon" pasó a llamarse "as123".
 
-Las fechas tienen el formato AAAA-mm-dd
+-Reemplazo de los valores nulos del campo rating por el string “G”.
 
-Los campos de texto estan en minúsculas, sin excepciones
+-Formato de fechas: AAAA-mm-dd.
 
-El campo duration debe convertirse en dos campos: duration_int y duration_type.
-El primero es un integer y el segundo un string indicando la unidad de medición de duración: min (minutos) o season (temporadas)
+-Los campos de texto están en minúsculas, sin excepciones.
 
+-Conversión del campo duration en dos campos: duration_int y duration_type. El primero es un integer y el segundo es un string que indica la unidad de medición de duración: min (minutos) o season (temporadas).
 
 # *Fast API*
 
-Se creo una Api con fastApi 
-con los siguientes paths
+Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
 
-*Home, contiene info*
+*Home: contiene información general del proyecto. Se accede a través de la ruta*
 @app.get("/")
 
-*Cuantas Peliculas hay en esta plataforma*
+*Cantidad de películas en una plataforma determinada. Se accede a través de la ruta *
 @app.get("/get_count_platform/{plataforma}")\n\n
 
-*Pelicula mas larga en determinado año y plataforma*
+*Película más larga en un año y plataforma determinados. Se accede a través de la ruta *
 @app.get("/get_max_duration/{year}/{plataforma}")
 
-*Cantidad de peliculas con un score superior al dado*
+*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta *
 @app.get("/get_score_count/{platform}/{scored}/{year}")
 
-*Cantidad de contenido total con un score superior*
+*Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta*
 @app.get("/get_contents/{rating}")
+
+
+¡Espero que esta propuesta te haya sido útil! Si tienes alguna duda o necesitas alguna ayuda adicional, no dudes en preguntar.
