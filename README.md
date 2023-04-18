@@ -25,7 +25,9 @@ Durante la limpieza de los datos, se llevaron a cabo los siguientes procesos:
 
 # *Fast API*
 
-Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
+#Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
+
+
 
 *Home: contiene información general del proyecto. Se accede a través de la ruta*
 ## @app.get("/")
