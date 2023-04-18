@@ -94,7 +94,25 @@ def score_count(dataframe, scored, year):
 #appdef
 @app.get("/")
 async def home():
-   return {"Hola": "Mundo"}
+   lineas = [
+      "BIENVENIDO",
+      "",
+      "estos son los path que existen:",
+      "",
+      "Cuantas Peliculas hay en esta plataforma",
+      "@app.get(\"/get_count_platform/{plataforma}\")",
+      "","",
+      "Pelicula mas larga en determinado año y plataforma",
+      "@app.get(\"/get_max_duration/{year}/{plataforma}\")",
+      "","",
+      "Cantidad de peliculas con un score superior al dado",
+      "@app.get(\"/get_score_count/{platform}/{scored}/{year}\")",
+      "","",
+      "Cantidad de contenido total con un score superior",
+      "@app.get(\"/get_contents/{rating}\")",   
+   ]
+   return "\n".join(lineas) 
+
 
 #Cuantas Peliculas hay en esta plataforma
 @app.get("/get_count_platform/{plataforma}")
