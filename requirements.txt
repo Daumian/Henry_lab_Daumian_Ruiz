@@ -1,6 +1,9 @@
 MarkupSafe==2.1.2
 polars==0.17.3
 typing_extensions==4.5.0
+uvicorn==0.21.1
+
+
 
 #pip install
 #polars
