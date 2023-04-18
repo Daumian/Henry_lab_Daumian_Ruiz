@@ -47,4 +47,4 @@ Este proyecto también incluye una API con FastAPI que cuenta con los siguientes
 Puedes ver un video con la informacion en
 https://www.youtube.com/watch?v=DLzylLGxy7M
 
-¡Espero que esta propuesta te haya sido útil! Si tienes alguna duda o necesitas alguna ayuda adicional, no dudes en preguntar.
+# *¡Espero que esta propuesta te haya sido útil! Si tienes alguna duda o necesitas alguna ayuda adicional, no dudes en preguntar.*
