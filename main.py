@@ -9,7 +9,7 @@ from fastapi import FastAPI,Body,Query
 #creacion de la app
 app:FastAPI = FastAPI();
 
-
+#importar Dataframes
 ruta_amazon = r"df_limpios/DF_Amazon.csv"
 amazon_df = pd.read_csv(ruta_amazon)
 ruta_disney = r"df_limpios/DF_Disney.csv"
@@ -27,6 +27,9 @@ only_content_and_score = pd.read_csv(ruta_archivo1)
 
 ruta_archivo1 = r"catalogo/total_movie_for_rating.csv"
 only_content_and_score = pd.read_csv(ruta_archivo1)
+
+
+#todos los def
 
 def contar_peliculas(dataframe):
    #este def contara solo las "movie" de cada plataforma, y las devolvera
@@ -81,7 +84,7 @@ def saberid(dataframe, anio):
       return "error: dato no valido"
 
 def score_count(dataframe, scored, year):
-#muestra la cantidad de peliculas con un score especifico
+   #muestra la cantidad de peliculas con un score especifico
    compania = None
 
    if dataframe == "1" or dataframe == "amazon":
@@ -100,7 +103,11 @@ def score_count(dataframe, scored, year):
    return cantidad
 
 
-#appdef
+
+
+#todos los app get
+
+#El home tiene informacion, para que te sepas orientar en la api
 @app.get("/")
 async def home():
    lineas = [
@@ -146,3 +153,4 @@ async def get_score_count(platform:str, scored: int, year: str):
 async def get_contents(rating: float):
    cantidad=contar_peliculas(float(rating))
    return cantidad
+   
