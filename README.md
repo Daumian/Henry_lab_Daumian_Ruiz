@@ -27,25 +27,25 @@ Durante la limpieza de los datos, se llevaron a cabo los siguientes procesos:
 
 Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
 
-## *Home: contiene información general del proyecto. Se accede a través de la ruta*
+*Home: contiene información general del proyecto. Se accede a través de la ruta*
 
-@app.get("/")
+## @app.get("/")
 
-## *Cantidad de películas en una plataforma determinada. Se accede a través de la ruta* 
+*Cantidad de películas en una plataforma determinada. Se accede a través de la ruta* 
 
-@app.get("/get_count_platform/{plataforma}")\n\n
+## @app.get("/get_count_platform/{plataforma}")\n\n
 
-## *Película más larga en un año y plataforma determinados. Se accede a través de la ruta* 
+*Película más larga en un año y plataforma determinados. Se accede a través de la ruta* 
 
-@app.get("/get_max_duration/{year}/{plataforma}")
+## @app.get("/get_max_duration/{year}/{plataforma}")
 
-## *Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta* 
+*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta* 
 
-@app.get("/get_score_count/{platform}/{scored}/{year}")
+## @app.get("/get_score_count/{platform}/{scored}/{year}")
 
-## *Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta* 
+*Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta* 
 
-@app.get("/get_contents/{rating}")
+## @app.get("/get_contents/{rating}")
 
 # *Contenido Adicional*
 
