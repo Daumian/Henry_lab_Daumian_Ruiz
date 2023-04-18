@@ -19,7 +19,7 @@ netflix_df = pd.read_csv(ruta_netflix)
 ruta_hulu = r"df_limpios/DF_Hulu.csv"
 hulu_df = pd.read_csv(ruta_hulu)
 
-ruta_score = r"ratings\GroupBy_Year_MovieId_MeanforRating.csv"
+ruta_score = r"ratings/GroupBy_Year_MovieId_MeanforRating.csv"
 score_movies_df = pd.read_csv(ruta_score)
 
 ruta_archivo1 = r"catalogo/total_movie_for_rating.csv"
