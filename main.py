@@ -9,7 +9,9 @@ from fastapi import FastAPI,Body,Query
 #creacion de la app
 app:FastAPI = FastAPI();
 
-amazon_df = pd.read_csv('df_limpios\DF_Amazon.csv')
+ruta_amazon = r"df_limpios/DF_Amazon.csv"
+amazon_df = pd.read_csv(ruta_amazon)
+
 disney_df = pd.read_csv('df_limpios\DF_Disney.csv')
 hulu_df = pd.read_csv('df_limpios\DF_Hulu.csv')
 netflix_df = pd.read_csv('df_limpios\DF_Netflix.csv')
