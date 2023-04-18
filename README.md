@@ -3,7 +3,7 @@
 
 # Henry_lab_Daumian_Ruiz
 
-## *info*
+# *info*
 Este proyecto es un analisis de los datasets de "Amazon" "Netflix" "Disney" y "Hulu"
 
 La limpieza de datos se hizo en deepnote y puedes acceder a ella en cualquier momento en el siguiente enlace
@@ -27,20 +27,24 @@ Durante la limpieza de los datos, se llevaron a cabo los siguientes procesos:
 
 Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
 
-*Home: contiene información general del proyecto. Se accede a través de la ruta*
+*Home: contiene información general del proyecto. Se accede a través de la ruta* 
 @app.get("/")
 
-*Cantidad de películas en una plataforma determinada. Se accede a través de la ruta *
+*Cantidad de películas en una plataforma determinada. Se accede a través de la ruta * 
 @app.get("/get_count_platform/{plataforma}")\n\n
 
-*Película más larga en un año y plataforma determinados. Se accede a través de la ruta *
+*Película más larga en un año y plataforma determinados. Se accede a través de la ruta * 
 @app.get("/get_max_duration/{year}/{plataforma}")
 
-*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta *
+*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta * 
 @app.get("/get_score_count/{platform}/{scored}/{year}")
 
-*Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta*
+*Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta* 
 @app.get("/get_contents/{rating}")
 
+# *Contenido Adicional*
+
+Puedes ver un video con la informacion en
+https://www.youtube.com/watch?v=DLzylLGxy7M
 
 ¡Espero que esta propuesta te haya sido útil! Si tienes alguna duda o necesitas alguna ayuda adicional, no dudes en preguntar.
