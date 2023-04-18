@@ -9,14 +9,21 @@ from fastapi import FastAPI,Body,Query
 #creacion de la app
 app:FastAPI = FastAPI();
 
+
 ruta_amazon = r"df_limpios/DF_Amazon.csv"
 amazon_df = pd.read_csv(ruta_amazon)
+ruta_disney = r"df_limpios/DF_Disney.csv"
+disney_df = pd.read_csv(ruta_disney)
+ruta_netflix = r"df_limpios/DF_Netflix.csv"
+netflix_df = pd.read_csv(ruta_netflix)
+ruta_hulu = r"df_limpios/DF_Hulu.csv"
+hulu_df = pd.read_csv(ruta_hulu)
 
-disney_df = pd.read_csv('df_limpios\DF_Disney.csv')
-hulu_df = pd.read_csv('df_limpios\DF_Hulu.csv')
-netflix_df = pd.read_csv('df_limpios\DF_Netflix.csv')
+ruta_score = r"ratings\GroupBy_Year_MovieId_MeanforRating.csv"
+score_movies_df = pd.read_csv(ruta_score)
 
-score_movies_df = pd.read_csv('ratings\GroupBy_Year_MovieId_MeanforRating.csv')
+ruta_archivo1 = r"catalogo/total_movie_for_rating.csv"
+only_content_and_score = pd.read_csv(ruta_archivo1)
 
 ruta_archivo1 = r"catalogo/total_movie_for_rating.csv"
 only_content_and_score = pd.read_csv(ruta_archivo1)
