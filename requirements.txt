@@ -4,6 +4,7 @@ uvicorn==0.21.1
 pandas
 pydantic
 fastapi
+typing
 
 
 
