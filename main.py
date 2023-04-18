@@ -16,6 +16,8 @@ netflix_df = pd.read_csv('df_limpios\DF_Netflix.csv')
 
 score_movies_df = pd.read_csv('ratings\GroupBy_Year_MovieId_MeanforRating.csv')
 
+ruta_archivo1 = r"catalogo/total_movie_for_rating.csv"
+only_content_and_score = pd.read_csv(ruta_archivo1)
 
 def contar_peliculas(dataframe):
    #este def contara solo las "movie" de cada plataforma, y las devolvera
@@ -33,6 +35,12 @@ def contar_peliculas(dataframe):
       return cant_peliculas.shape[0]
    else:
       return "error:plataforma incorrecta"
+
+def contar_peliculas(dataframe):
+   #este def contara el numero de contenidos
+   count_peliculas = only_content_and_score.loc[(only_content_and_score['rating'] >= dataframe)]
+   contenidos = count_peliculas.shape[0]
+   return contenidos
 
 def saberid(dataframe, anio):
     # este def solo el id de una pelicula especifica
@@ -100,14 +108,14 @@ async def get_max_duration(year: int, plataforma: str):
    titleMovie,durationMovie = saberid(plataforma, year)
    return (f'Movie{titleMovie} || Duration:{durationMovie}')
 
-@app.get("/get_score")
-async def get_score_count():
-   cantidad=score_count("1", 4, "2015")
-   return cantidad
-
-
 #cantidad de peliculas con un score superior
 @app.get("/get_score_count/{platform}/{scored}/{year}")
 async def get_score_count(platform:str, scored: int, year: str):
    cantidad=score_count(str(platform), int(scored),year)
+   return cantidad
+
+#cantidad de peliculas con un score superior
+@app.get("/get_contents/{rating}")
+async def get_contents(rating: float):
+   cantidad=contar_peliculas(float(rating))
    return cantidad
