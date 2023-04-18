@@ -1,5 +1,4 @@
 import pandas as pd
-
 from typing import Optional
 from typing import Dict
 from pydantic import BaseModel
@@ -31,10 +30,11 @@ only_content_and_score = pd.read_csv(ruta_archivo1)
 
 #todos los def
 
-def contar_peliculas(dataframe):
+
+def contar_movie(dataframe):
    #este def contara solo las "movie" de cada plataforma, y las devolvera
    if dataframe == "1" or dataframe == "amazon":
-      cant_peliculas =amazon_df[amazon_df["type"] == "movie"]
+      cant_peliculas=amazon_df[amazon_df["type"] == "movie"]
       return cant_peliculas.shape[0]
    elif dataframe == "2" or dataframe == "netflix":
       cant_peliculas =netflix_df[netflix_df["type"] == "movie"]
@@ -130,11 +130,13 @@ async def home():
    return "\n".join(lineas) 
 
 
-#Cuantas Peliculas hay en esta plataforma
+
+
 @app.get("/get_count_platform/{plataforma}")
-async def plataforma(plataforma:str):
-   cantidad=contar_peliculas(str(plataforma))
-   return cantidad
+async def get_count_platform(plataforma: str):
+   cantidad1=contar_movie()
+   return str(cantidad1)
+
 
 #Pelicula mas larga
 @app.get("/get_max_duration/{year}/{plataforma}")
@@ -145,12 +147,12 @@ async def get_max_duration(year: int, plataforma: str):
 #cantidad de peliculas con un score superior
 @app.get("/get_score_count/{platform}/{scored}/{year}")
 async def get_score_count(platform:str, scored: int, year: str):
-   cantidad=score_count(str(platform), int(scored),year)
-   return cantidad
+   cantidad2=score_count(str(platform), int(scored),year)
+   return cantidad2
 
 #cantidad de peliculas con un score superior
 @app.get("/get_contents/{rating}")
 async def get_contents(rating: float):
-   cantidad=contar_peliculas(float(rating))
-   return cantidad
+   cantidad3=contar_peliculas(float(rating))
+   return cantidad3
    
