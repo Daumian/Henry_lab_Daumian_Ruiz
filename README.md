@@ -24,26 +24,22 @@ Durante la limpieza de los datos, se llevaron a cabo los siguientes procesos:
 -Conversión del campo duration en dos campos: duration_int y duration_type. El primero es un integer y el segundo es un string que indica la unidad de medición de duración: min (minutos) o season (temporadas).
 
 # *Fast API*
+Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
 
-#Este proyecto también incluye una API con FastAPI que cuenta con los siguientes endpoints:
-
-
-
-*Home: contiene información general del proyecto. Se accede a través de la ruta*
 ## @app.get("/")
+*Home: contiene información general del proyecto.*
 
-*Cantidad de películas en una plataforma determinada. Se accede a través de la ruta* 
-## @app.get("/get_count_platform/{plataforma}")\n\n
+## @app.get("/get_count_platform/{plataforma}")
+*Cantidad de películas en una plataforma determinada.*
 
-*Película más larga en un año y plataforma determinados. Se accede a través de la ruta* 
 ## @app.get("/get_max_duration/{year}/{plataforma}")
+*Película más larga en un año y plataforma determinados.*
 
-*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados. Se accede a través de la ruta* 
 ## @app.get("/get_score_count/{platform}/{scored}/{year}")
+*Cantidad de películas con una puntuación superior a la dada en una plataforma y año determinados.*
 
-*Cantidad total de contenido con una puntuación superior a la dada. Se accede a través de la ruta* 
 ## @app.get("/get_contents/{rating}")
-
+*Cantidad total de contenido con una puntuación superior a la dada.*
 # *Contenido Adicional*
 
 Puedes ver un video con la informacion en
